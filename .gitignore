@@ -1,0 +1,15 @@
+venv/
+node/
+media/
+migrations/
+__pycache__/
+.idea/
+*.pyc
+db.sqlite3
+.env
+.DS_Store
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
