@@ -28,8 +28,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+
+CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
 
 
 # Application definition
@@ -95,10 +96,21 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'a_core.wsgi.application'
 ASGI_APPLICATION = 'a_core.asgi.application'
 
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
+#     }
+# }
+
+REDIS_URL = os.getenv('REDIS_URL')
+
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(REDIS_URL)],
+        },
+    },
 }
 
 
