@@ -1,6 +1,6 @@
 from django.urls import path
-from . import consumers
+from .consumers import *
 
-ws_urlpatterns = [
-    path('ws/chatroom/<chatroom_name>/', consumers.ChatroomConsumer.as_asgi())
+websocket_urlpatterns = [
+    path("ws/chatroom/<chatroom_name>", ChatroomConsumer.as_asgi()),
 ]
